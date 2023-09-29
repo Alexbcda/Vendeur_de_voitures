@@ -1,5 +1,6 @@
 // Garage.ts
 import { Vehicule } from './Vehicule';
+import { Camion } from './Camion'; // Assurez-vous d'importer la classe Camion si nécessaire
 
 export class Garage {
   private _nomGarage: string;
@@ -38,8 +39,19 @@ export class Garage {
     return vehiculesParCouleur;
   }
 
-  // Ajoutez cette méthode pour ajouter des véhicules au garage
   ajouterVehicules(vehicules: Vehicule[]): void {
     this._vehicules.push(...vehicules);
+  }
+
+  rechercherKilometrageCamionSuperieurA(kilometrageRecherche: number): Camion[] {
+    const camionsSuperieurs: Camion[] = [];
+
+    for (const vehicule of this._vehicules) {
+      if (vehicule instanceof Camion && vehicule.getKilometrage() > kilometrageRecherche) {
+        camionsSuperieurs.push(vehicule);
+      }
+    }
+
+    return camionsSuperieurs;
   }
 }
